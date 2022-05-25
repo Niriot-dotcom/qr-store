@@ -35,6 +35,7 @@
             this.cameraSelect = new System.Windows.Forms.ComboBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.storePanel = new System.Windows.Forms.Panel();
+            this.btnCreateOrder = new System.Windows.Forms.Button();
             this.productsGrid = new System.Windows.Forms.DataGridView();
             this.idCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,7 +43,6 @@
             this.quantityCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.storeIdLabel = new System.Windows.Forms.Label();
             this.storeNameLabel = new System.Windows.Forms.Label();
-            this.btnCreateOrder = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.cameraImgBox)).BeginInit();
             this.storePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productsGrid)).BeginInit();
@@ -102,6 +102,17 @@
             this.storePanel.Name = "storePanel";
             this.storePanel.Size = new System.Drawing.Size(809, 634);
             this.storePanel.TabIndex = 4;
+            this.storePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.storePanel_Paint);
+            // 
+            // btnCreateOrder
+            // 
+            this.btnCreateOrder.Location = new System.Drawing.Point(535, 564);
+            this.btnCreateOrder.Name = "btnCreateOrder";
+            this.btnCreateOrder.Size = new System.Drawing.Size(274, 70);
+            this.btnCreateOrder.TabIndex = 5;
+            this.btnCreateOrder.Text = "create new order";
+            this.btnCreateOrder.UseVisualStyleBackColor = true;
+            this.btnCreateOrder.Click += new System.EventHandler(this.btnCreateOrder_Click);
             // 
             // productsGrid
             // 
@@ -163,15 +174,6 @@
             this.storeNameLabel.Size = new System.Drawing.Size(0, 63);
             this.storeNameLabel.TabIndex = 0;
             this.storeNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnCreateOrder
-            // 
-            this.btnCreateOrder.Location = new System.Drawing.Point(535, 564);
-            this.btnCreateOrder.Name = "btnCreateOrder";
-            this.btnCreateOrder.Size = new System.Drawing.Size(274, 70);
-            this.btnCreateOrder.TabIndex = 5;
-            this.btnCreateOrder.Text = "create new order";
-            this.btnCreateOrder.UseVisualStyleBackColor = true;
             // 
             // TakeOrderForm
             // 

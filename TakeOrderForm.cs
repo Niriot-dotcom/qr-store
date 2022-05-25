@@ -147,5 +147,16 @@ namespace _3P_PatyLopez
         {
 
         }
+
+        private void btnCreateOrder_Click(object sender, EventArgs e)
+        {
+            AddProductForm productForm = new AddProductForm();
+            productForm.ShowDialog();
+        }
+
+        private void storePanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
