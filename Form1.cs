@@ -39,5 +39,16 @@ namespace _3P_PatyLopez
         {
             subject.SomeBusinessLogic("C", checkBoxGrid.Checked);
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TakeOrderForm takeOrderForm = new TakeOrderForm();
+            takeOrderForm.ShowDialog();
+        }
     }
 }
