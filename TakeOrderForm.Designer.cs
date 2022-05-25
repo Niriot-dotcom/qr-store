@@ -28,33 +28,176 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
+            this.takeOrderBtn = new System.Windows.Forms.Button();
+            this.cameraImgBox = new System.Windows.Forms.PictureBox();
+            this.camLabel = new System.Windows.Forms.Label();
+            this.cameraSelect = new System.Windows.Forms.ComboBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.storePanel = new System.Windows.Forms.Panel();
+            this.storeNameLabel = new System.Windows.Forms.Label();
+            this.storeIdLabel = new System.Windows.Forms.Label();
+            this.productsGrid = new System.Windows.Forms.DataGridView();
+            this.idCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unitPriceCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.cameraImgBox)).BeginInit();
+            this.storePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productsGrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // takeOrderBtn
             // 
-            this.button1.Location = new System.Drawing.Point(122, 96);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(150, 46);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "read QR code";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.takeOrderBtn.Location = new System.Drawing.Point(626, 26);
+            this.takeOrderBtn.Name = "takeOrderBtn";
+            this.takeOrderBtn.Size = new System.Drawing.Size(240, 82);
+            this.takeOrderBtn.TabIndex = 0;
+            this.takeOrderBtn.Text = "read QR code";
+            this.takeOrderBtn.UseVisualStyleBackColor = true;
+            this.takeOrderBtn.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // cameraImgBox
+            // 
+            this.cameraImgBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.cameraImgBox.Location = new System.Drawing.Point(57, 136);
+            this.cameraImgBox.Name = "cameraImgBox";
+            this.cameraImgBox.Size = new System.Drawing.Size(809, 634);
+            this.cameraImgBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.cameraImgBox.TabIndex = 1;
+            this.cameraImgBox.TabStop = false;
+            this.cameraImgBox.Click += new System.EventHandler(this.qrImg_Click);
+            // 
+            // camLabel
+            // 
+            this.camLabel.AutoSize = true;
+            this.camLabel.Location = new System.Drawing.Point(57, 51);
+            this.camLabel.Name = "camLabel";
+            this.camLabel.Size = new System.Drawing.Size(167, 32);
+            this.camLabel.TabIndex = 2;
+            this.camLabel.Text = "Select camera:";
+            // 
+            // cameraSelect
+            // 
+            this.cameraSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cameraSelect.FormattingEnabled = true;
+            this.cameraSelect.Location = new System.Drawing.Point(230, 48);
+            this.cameraSelect.Name = "cameraSelect";
+            this.cameraSelect.Size = new System.Drawing.Size(390, 40);
+            this.cameraSelect.TabIndex = 3;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // storePanel
+            // 
+            this.storePanel.Controls.Add(this.productsGrid);
+            this.storePanel.Controls.Add(this.storeIdLabel);
+            this.storePanel.Controls.Add(this.storeNameLabel);
+            this.storePanel.Location = new System.Drawing.Point(57, 136);
+            this.storePanel.Name = "storePanel";
+            this.storePanel.Size = new System.Drawing.Size(809, 634);
+            this.storePanel.TabIndex = 4;
+            // 
+            // storeNameLabel
+            // 
+            this.storeNameLabel.AutoSize = true;
+            this.storeNameLabel.Location = new System.Drawing.Point(64, 156);
+            this.storeNameLabel.Name = "storeNameLabel";
+            this.storeNameLabel.Size = new System.Drawing.Size(148, 32);
+            this.storeNameLabel.TabIndex = 0;
+            this.storeNameLabel.Text = "Store name: ";
+            // 
+            // storeIdLabel
+            // 
+            this.storeIdLabel.AutoSize = true;
+            this.storeIdLabel.Location = new System.Drawing.Point(64, 82);
+            this.storeIdLabel.Name = "storeIdLabel";
+            this.storeIdLabel.Size = new System.Drawing.Size(108, 32);
+            this.storeIdLabel.TabIndex = 1;
+            this.storeIdLabel.Text = "Store id: ";
+            // 
+            // productsGrid
+            // 
+            this.productsGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.productsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.productsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idCol,
+            this.nameCol,
+            this.unitPriceCol,
+            this.quantityCol});
+            this.productsGrid.Location = new System.Drawing.Point(0, 300);
+            this.productsGrid.Name = "productsGrid";
+            this.productsGrid.RowHeadersWidth = 82;
+            this.productsGrid.RowTemplate.Height = 41;
+            this.productsGrid.Size = new System.Drawing.Size(809, 334);
+            this.productsGrid.TabIndex = 2;
+            this.productsGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // idCol
+            // 
+            this.idCol.HeaderText = "id";
+            this.idCol.MinimumWidth = 10;
+            this.idCol.Name = "idCol";
+            // 
+            // nameCol
+            // 
+            this.nameCol.HeaderText = "name";
+            this.nameCol.MinimumWidth = 10;
+            this.nameCol.Name = "nameCol";
+            // 
+            // unitPriceCol
+            // 
+            this.unitPriceCol.HeaderText = "unit price";
+            this.unitPriceCol.MinimumWidth = 10;
+            this.unitPriceCol.Name = "unitPriceCol";
+            // 
+            // quantityCol
+            // 
+            this.quantityCol.HeaderText = "quantity";
+            this.quantityCol.MinimumWidth = 10;
+            this.quantityCol.Name = "quantityCol";
             // 
             // TakeOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1290, 828);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(924, 828);
+            this.Controls.Add(this.storePanel);
+            this.Controls.Add(this.cameraSelect);
+            this.Controls.Add(this.camLabel);
+            this.Controls.Add(this.cameraImgBox);
+            this.Controls.Add(this.takeOrderBtn);
             this.Name = "TakeOrderForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TakeOrderForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TakeOrderForm_FormClosing);
+            this.Load += new System.EventHandler(this.TakeOrderForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.cameraImgBox)).EndInit();
+            this.storePanel.ResumeLayout(false);
+            this.storePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productsGrid)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private Button button1;
+        private Button takeOrderBtn;
+        private PictureBox cameraImgBox;
+        private Label camLabel;
+        private ComboBox cameraSelect;
+        private System.Windows.Forms.Timer timer1;
+        private Panel storePanel;
+        private DataGridView productsGrid;
+        private DataGridViewTextBoxColumn idCol;
+        private DataGridViewTextBoxColumn nameCol;
+        private DataGridViewTextBoxColumn unitPriceCol;
+        private DataGridViewTextBoxColumn quantityCol;
+        private Label storeIdLabel;
+        private Label storeNameLabel;
     }
 }
