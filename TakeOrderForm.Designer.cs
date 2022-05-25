@@ -35,13 +35,14 @@
             this.cameraSelect = new System.Windows.Forms.ComboBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.storePanel = new System.Windows.Forms.Panel();
-            this.storeNameLabel = new System.Windows.Forms.Label();
-            this.storeIdLabel = new System.Windows.Forms.Label();
             this.productsGrid = new System.Windows.Forms.DataGridView();
             this.idCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitPriceCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.storeIdLabel = new System.Windows.Forms.Label();
+            this.storeNameLabel = new System.Windows.Forms.Label();
+            this.btnCreateOrder = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.cameraImgBox)).BeginInit();
             this.storePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productsGrid)).BeginInit();
@@ -93,6 +94,7 @@
             // 
             // storePanel
             // 
+            this.storePanel.Controls.Add(this.btnCreateOrder);
             this.storePanel.Controls.Add(this.productsGrid);
             this.storePanel.Controls.Add(this.storeIdLabel);
             this.storePanel.Controls.Add(this.storeNameLabel);
@@ -100,24 +102,6 @@
             this.storePanel.Name = "storePanel";
             this.storePanel.Size = new System.Drawing.Size(809, 634);
             this.storePanel.TabIndex = 4;
-            // 
-            // storeNameLabel
-            // 
-            this.storeNameLabel.AutoSize = true;
-            this.storeNameLabel.Location = new System.Drawing.Point(64, 156);
-            this.storeNameLabel.Name = "storeNameLabel";
-            this.storeNameLabel.Size = new System.Drawing.Size(148, 32);
-            this.storeNameLabel.TabIndex = 0;
-            this.storeNameLabel.Text = "Store name: ";
-            // 
-            // storeIdLabel
-            // 
-            this.storeIdLabel.AutoSize = true;
-            this.storeIdLabel.Location = new System.Drawing.Point(64, 82);
-            this.storeIdLabel.Name = "storeIdLabel";
-            this.storeIdLabel.Size = new System.Drawing.Size(108, 32);
-            this.storeIdLabel.TabIndex = 1;
-            this.storeIdLabel.Text = "Store id: ";
             // 
             // productsGrid
             // 
@@ -128,11 +112,11 @@
             this.nameCol,
             this.unitPriceCol,
             this.quantityCol});
-            this.productsGrid.Location = new System.Drawing.Point(0, 300);
+            this.productsGrid.Location = new System.Drawing.Point(0, 178);
             this.productsGrid.Name = "productsGrid";
             this.productsGrid.RowHeadersWidth = 82;
             this.productsGrid.RowTemplate.Height = 41;
-            this.productsGrid.Size = new System.Drawing.Size(809, 334);
+            this.productsGrid.Size = new System.Drawing.Size(809, 350);
             this.productsGrid.TabIndex = 2;
             this.productsGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -159,6 +143,35 @@
             this.quantityCol.HeaderText = "quantity";
             this.quantityCol.MinimumWidth = 10;
             this.quantityCol.Name = "quantityCol";
+            // 
+            // storeIdLabel
+            // 
+            this.storeIdLabel.AutoSize = true;
+            this.storeIdLabel.Font = new System.Drawing.Font("DejaVu Sans", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.storeIdLabel.Location = new System.Drawing.Point(7, 120);
+            this.storeIdLabel.Name = "storeIdLabel";
+            this.storeIdLabel.Size = new System.Drawing.Size(0, 35);
+            this.storeIdLabel.TabIndex = 1;
+            this.storeIdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // storeNameLabel
+            // 
+            this.storeNameLabel.AutoSize = true;
+            this.storeNameLabel.Font = new System.Drawing.Font("DejaVu Sans", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.storeNameLabel.Location = new System.Drawing.Point(0, 40);
+            this.storeNameLabel.Name = "storeNameLabel";
+            this.storeNameLabel.Size = new System.Drawing.Size(0, 63);
+            this.storeNameLabel.TabIndex = 0;
+            this.storeNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnCreateOrder
+            // 
+            this.btnCreateOrder.Location = new System.Drawing.Point(535, 564);
+            this.btnCreateOrder.Name = "btnCreateOrder";
+            this.btnCreateOrder.Size = new System.Drawing.Size(274, 70);
+            this.btnCreateOrder.TabIndex = 5;
+            this.btnCreateOrder.Text = "create new order";
+            this.btnCreateOrder.UseVisualStyleBackColor = true;
             // 
             // TakeOrderForm
             // 
@@ -199,5 +212,6 @@
         private DataGridViewTextBoxColumn quantityCol;
         private Label storeIdLabel;
         private Label storeNameLabel;
+        private Button btnCreateOrder;
     }
 }

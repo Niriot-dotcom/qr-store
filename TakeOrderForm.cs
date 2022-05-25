@@ -31,32 +31,35 @@ namespace _3P_PatyLopez
         private void button1_Click(object sender, EventArgs e)
         {
             // reading QR from camera
+            storePanel.Hide();
+            cameraImgBox.Show();
+
             videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[cameraSelect.SelectedIndex].MonikerString);
             videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
             videoCaptureDevice.Start();
             while (cameraImgBox.Image == null) { }
             timer1.Start();
 
-            // read custom qr for each store
-            var store1 = new StoreClass
-            {
-                storeId = 1,
-                storeName = "tienda 1",
-                products = new Product[]
-                {
-                    new Product
-                    {
-                        id = 1,
-                        name = "gansito",
-                        unitPrice = 12.5f,
-                        quantity = 50
-                    },
-                }
-            };
+            //// read custom qr for each store
+            //var store1 = new StoreClass
+            //{
+            //    storeId = 1,
+            //    storeName = "tienda 1",
+            //    products = new Product[]
+            //    {
+            //        new Product
+            //        {
+            //            id = 1,
+            //            name = "gansito",
+            //            unitPrice = 12.5f,
+            //            quantity = 50
+            //        },
+            //    }
+            //};
 
-            string store1json = JsonSerializer.Serialize(store1);
+            //string store1json = JsonSerializer.Serialize(store1);
 
-            //GetStoreInfo(store1json);
+            ////GetStoreInfo(store1json);
         }
 
         private void VideoCaptureDevice_NewFrame(object sender, NewFrameEventArgs eventArgs)
@@ -126,9 +129,16 @@ namespace _3P_PatyLopez
 
         private void showStoreInfo(StoreClass info)
         {
-            storeIdLabel.Text += info.storeId;
-            storeNameLabel.Text += info.storeName;
-            //productsGrid;
+            productsGrid.Rows.Clear();
+            productsGrid.Refresh();
+
+            storeIdLabel.Text = "ID: " + info.storeId;
+            storeNameLabel.Text = info.storeName;
+
+            foreach (Product p in info.products)
+            {
+                productsGrid.Rows.Add(p.id, p.name, p.unitPrice, p.quantity);
+            }
 
             storePanel.Show();
         }
