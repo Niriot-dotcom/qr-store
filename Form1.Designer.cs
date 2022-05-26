@@ -123,7 +123,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("DejaVu Sans", 19.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(49, 118);
+            this.button1.Location = new System.Drawing.Point(325, 168);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(482, 260);
             this.button1.TabIndex = 1;
@@ -134,7 +134,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("DejaVu Sans", 19.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button2.Location = new System.Drawing.Point(599, 118);
+            this.button2.Location = new System.Drawing.Point(325, 536);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(482, 260);
             this.button2.TabIndex = 2;

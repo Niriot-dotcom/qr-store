@@ -27,6 +27,7 @@ namespace _3P_PatyLopez
 
         FilterInfoCollection filterInfoCollection;
         VideoCaptureDevice videoCaptureDevice;
+        StoreClass storeInfo;
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -39,42 +40,11 @@ namespace _3P_PatyLopez
             videoCaptureDevice.Start();
             while (cameraImgBox.Image == null) { }
             timer1.Start();
-
-            //// read custom qr for each store
-            //var store1 = new StoreClass
-            //{
-            //    storeId = 1,
-            //    storeName = "tienda 1",
-            //    products = new Product[]
-            //    {
-            //        new Product
-            //        {
-            //            id = 1,
-            //            name = "gansito",
-            //            unitPrice = 12.5f,
-            //            quantity = 50
-            //        },
-            //    }
-            //};
-
-            //string store1json = JsonSerializer.Serialize(store1);
-
-            ////GetStoreInfo(store1json);
         }
 
         private void VideoCaptureDevice_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
             cameraImgBox.Image = (Bitmap)eventArgs.Frame.Clone();
-        }
-
-        private async void GetStoreInfo(string jsonInfo)
-        {
-            if (jsonInfo == "")
-            {
-                //
-            }
-            string urlImage = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + jsonInfo;
-            cameraImgBox.Load(urlImage);
         }
 
         private void qrImg_Click(object sender, EventArgs e)
@@ -84,8 +54,8 @@ namespace _3P_PatyLopez
 
         private void TakeOrderForm_Load(object sender, EventArgs e)
         {
-            // hide store info
             storePanel.Hide();
+            labelQrGenerated.Hide();
 
             filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             foreach (FilterInfo Device in filterInfoCollection)
@@ -111,7 +81,7 @@ namespace _3P_PatyLopez
 
             if (result != null)
             {
-                StoreClass? info = JsonSerializer.Deserialize<StoreClass>(result.ToString());
+                storeInfo = JsonSerializer.Deserialize<StoreClass>(result.ToString());
                 timer1.Stop();
                 if (videoCaptureDevice.IsRunning == true)
                 {
@@ -119,23 +89,23 @@ namespace _3P_PatyLopez
                     videoCaptureDevice.WaitForStop();
                     cameraImgBox.Image = null;
                     cameraImgBox.Hide();
-                    if (info != null)
+                    if (storeInfo != null)
                     {
-                        showStoreInfo(info);
+                        showStoreInfo();
                     }
                 }
             }
         }
 
-        private void showStoreInfo(StoreClass info)
+        private void showStoreInfo()
         {
             productsGrid.Rows.Clear();
             productsGrid.Refresh();
 
-            storeIdLabel.Text = "ID: " + info.storeId;
-            storeNameLabel.Text = info.storeName;
+            storeIdLabel.Text = "ID: " + storeInfo.storeId;
+            storeNameLabel.Text = storeInfo.storeName;
 
-            foreach (Product p in info.products)
+            foreach (Product p in storeInfo.products)
             {
                 productsGrid.Rows.Add(p.id, p.name, p.unitPrice, p.quantity);
             }
@@ -150,8 +120,59 @@ namespace _3P_PatyLopez
 
         private void btnCreateOrder_Click(object sender, EventArgs e)
         {
+            productsGrid.Rows.Clear();
+            productsGrid.Refresh();
             AddProductForm productForm = new AddProductForm();
             productForm.ShowDialog();
+
+            foreach (Product p in productForm.list)
+            {
+                productsGrid.Rows.Add(p.id, p.name, p.unitPrice, p.quantity);
+            }
+
+            //labelQrGenerated.Show();
+            //sleep(3);
+            //labelQrGenerated.Hide();
+
+            var t = new System.Windows.Forms.Timer();
+            t.Interval = 1000;
+            t.Tick += (s, e) =>
+            {
+                labelQrGenerated.Show();
+                t.Stop();
+            };
+            labelQrGenerated.Hide();
+            t.Start();
+
+            GenerateQrCode(productForm.list);
+        }
+
+        private void GenerateQrCode(List<Product> products)
+        {
+            var store = new StoreClass
+            {
+                storeId = storeInfo.storeId,
+                storeName = storeInfo.storeName,
+                products = products.ToArray(),
+            };
+
+            string storeJson = JsonSerializer.Serialize(store);
+            if (storeJson == "")
+            {
+                return;
+            }
+            string urlImage = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + storeJson;
+            imgQr.Load(urlImage);
+        }
+
+        private async void sleep(double secs)
+        {
+            var timer = new PeriodicTimer(TimeSpan.FromSeconds(secs));
+
+            while (await timer.WaitForNextTickAsync())
+            {
+                //Business logic
+            }
         }
 
         private void storePanel_Paint(object sender, PaintEventArgs e)

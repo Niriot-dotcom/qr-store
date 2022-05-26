@@ -35,6 +35,8 @@
             this.cameraSelect = new System.Windows.Forms.ComboBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.storePanel = new System.Windows.Forms.Panel();
+            this.labelQrGenerated = new System.Windows.Forms.Label();
+            this.imgQr = new System.Windows.Forms.PictureBox();
             this.btnCreateOrder = new System.Windows.Forms.Button();
             this.productsGrid = new System.Windows.Forms.DataGridView();
             this.idCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,6 +47,7 @@
             this.storeNameLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.cameraImgBox)).BeginInit();
             this.storePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgQr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,15 +97,35 @@
             // 
             // storePanel
             // 
+            this.storePanel.Controls.Add(this.labelQrGenerated);
+            this.storePanel.Controls.Add(this.imgQr);
             this.storePanel.Controls.Add(this.btnCreateOrder);
             this.storePanel.Controls.Add(this.productsGrid);
             this.storePanel.Controls.Add(this.storeIdLabel);
             this.storePanel.Controls.Add(this.storeNameLabel);
             this.storePanel.Location = new System.Drawing.Point(57, 136);
             this.storePanel.Name = "storePanel";
-            this.storePanel.Size = new System.Drawing.Size(809, 634);
+            this.storePanel.Size = new System.Drawing.Size(1233, 634);
             this.storePanel.TabIndex = 4;
             this.storePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.storePanel_Paint);
+            // 
+            // labelQrGenerated
+            // 
+            this.labelQrGenerated.AutoSize = true;
+            this.labelQrGenerated.Location = new System.Drawing.Point(902, 101);
+            this.labelQrGenerated.Name = "labelQrGenerated";
+            this.labelQrGenerated.Size = new System.Drawing.Size(231, 64);
+            this.labelQrGenerated.TabIndex = 7;
+            this.labelQrGenerated.Text = "the new qr code has\r\nbeen generated!";
+            // 
+            // imgQr
+            // 
+            this.imgQr.Location = new System.Drawing.Point(844, 178);
+            this.imgQr.Name = "imgQr";
+            this.imgQr.Size = new System.Drawing.Size(350, 350);
+            this.imgQr.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgQr.TabIndex = 6;
+            this.imgQr.TabStop = false;
             // 
             // btnCreateOrder
             // 
@@ -179,7 +202,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(924, 828);
+            this.ClientSize = new System.Drawing.Size(1342, 828);
             this.Controls.Add(this.storePanel);
             this.Controls.Add(this.cameraSelect);
             this.Controls.Add(this.camLabel);
@@ -193,6 +216,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cameraImgBox)).EndInit();
             this.storePanel.ResumeLayout(false);
             this.storePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgQr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -215,5 +239,8 @@
         private Label storeIdLabel;
         private Label storeNameLabel;
         private Button btnCreateOrder;
+        private PictureBox imgQr;
+        private Label label1;
+        private Label labelQrGenerated;
     }
 }
