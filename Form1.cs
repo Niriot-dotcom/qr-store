@@ -58,5 +58,11 @@ namespace _3P_PatyLopez
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            GenerateRouteFrom generateRouteFrom = new GenerateRouteFrom();
+            generateRouteFrom.ShowDialog();
+        }
     }
 }
