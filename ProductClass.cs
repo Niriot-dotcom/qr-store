@@ -34,7 +34,7 @@ namespace _3P_PatyLopez
                 new Product
                 {
                     id = 2,
-                    name = "vegetables 1 kg",
+                    name = "veggies",
                     unitPrice = 7.4f,
                     quantity = 0
                 },

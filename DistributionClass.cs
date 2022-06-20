@@ -45,6 +45,7 @@ namespace _3P_PatyLopez
 
             foreach (StoreClass s in stores)
             {
+                float profit = 0f;
                 foreach (Product p in s.products)
                 {
                     if (p.id == 0)
@@ -59,7 +60,9 @@ namespace _3P_PatyLopez
                     {
                         veggies += p.quantity;
                     }
+                    profit += (p.quantity * p.unitPrice);
                 }
+                s.profit = profit;
             }
 
             // 3 de refrescos, 120 cada uno
