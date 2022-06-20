@@ -2,22 +2,23 @@ namespace _3P_PatyLopez
 {
     public partial class Form1 : Form
     {
-        private Subject subject = new Subject();
+        private Subject singletonSubject;
         public Form1()
         {
             InitializeComponent();
+            singletonSubject = Subject.GetInstance();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             var observerTxtF = new ConcreteObserverA();
-            subject.Attach(observerTxtF);
+            singletonSubject.Attach(observerTxtF);
 
             var observerTxtB = new ConcreteObserverB();
-            subject.Attach(observerTxtB);
+            singletonSubject.Attach(observerTxtB);
 
             var observerGrid = new ConcreteObserverC();
-            subject.Attach(observerGrid);
+            singletonSubject.Attach(observerGrid);
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -27,17 +28,17 @@ namespace _3P_PatyLopez
 
         private void checkBoxTxt_CheckedChanged(object sender, EventArgs e)
         {
-            subject.SomeBusinessLogic("A", checkBoxTxt.Checked);
+            // singletonSubject.SomeBusinessLogic("A", checkBoxTxt.Checked);
         }
 
         private void checkBoxTextbox_CheckedChanged(object sender, EventArgs e)
         {
-            subject.SomeBusinessLogic("B", checkBoxTextbox.Checked);
+            // singletonSubject.SomeBusinessLogic("B", checkBoxTextbox.Checked);
         }
 
         private void checkBoxGrid_CheckedChanged(object sender, EventArgs e)
         {
-            subject.SomeBusinessLogic("C", checkBoxGrid.Checked);
+            // singletonSubject.SomeBusinessLogic("C", checkBoxGrid.Checked);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -47,8 +48,15 @@ namespace _3P_PatyLopez
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // TODO add event
+            singletonSubject.NotifyToAll(checkBoxTxt.Checked, checkBoxTextbox.Checked, checkBoxGrid.Checked);
             TakeOrderForm takeOrderForm = new TakeOrderForm();
             takeOrderForm.ShowDialog();
+        }
+
+        private void gridLogs_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

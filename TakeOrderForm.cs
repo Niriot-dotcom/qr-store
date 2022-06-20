@@ -163,6 +163,7 @@ namespace _3P_PatyLopez
             }
             string urlImage = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + storeJson;
             imgQr.Load(urlImage);
+            // TODO add event
         }
 
         private async void sleep(double secs)

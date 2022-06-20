@@ -117,6 +117,7 @@
             this.labelQrGenerated.Size = new System.Drawing.Size(231, 64);
             this.labelQrGenerated.TabIndex = 7;
             this.labelQrGenerated.Text = "the new qr code has\r\nbeen generated!";
+            this.labelQrGenerated.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // imgQr
             // 

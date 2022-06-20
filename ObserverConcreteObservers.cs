@@ -17,11 +17,24 @@ namespace _3P_PatyLopez
                 if ((subject as Subject).CheckState)
                 {
                     Console.WriteLine("adding to txt file...");
+
+                    AddingToTxtFile();
                 }
                 else
                 {
                     Console.WriteLine("no more to txt file...");
                 }
+            }
+        }
+
+        private void AddingToTxtFile()
+        {
+            // await File.WriteAllTextAsync("logs.txt", text);
+            string path = "logs.txt";               
+            string eventTxt = "new event";               
+            using(StreamWriter sw = File.AppendText(path))
+            {
+                sw.WriteLine(DateTime.Now.ToString() + ": " + eventTxt);
             }
         }
     }

@@ -26,12 +26,23 @@ namespace _3P_PatyLopez
 
     // The Subject owns some important state and notifies observers when the
     // state changes.
-    public class Subject : ISubject
+    public sealed class Subject : ISubject
     {
         // For the sake of simplicity, the Subject's state, essential to all
         // subscribers, is stored in this variable.
+        private Subject() { }
+        private static Subject _instance;
         public string Checkbox { get; set; } = "";
         public bool CheckState { get; set; } = false;
+
+        public static Subject GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new Subject();
+            }
+            return _instance;
+        }
 
         // List of subscribers. In real life, the list of subscribers can be
         // stored more comprehensively (categorized by event type, etc.).
@@ -67,13 +78,22 @@ namespace _3P_PatyLopez
         // about to happen (or after it).
         public void SomeBusinessLogic(string id, bool check)
         {
-            //Console.WriteLine("\nSubject: I'm doing something important.");
+            // Console.WriteLine("\nSubject: " + id);
             this.Checkbox = id;
             this.CheckState = check;
 
             Thread.Sleep(15);
             //Console.WriteLine("Subject: My state has just changed to: " + this.Checkbox);
             this.Notify();
+        }
+
+        public void NotifyToAll(bool txt, bool txtBox, bool grid)
+        {
+            Subject singletonSubject = Subject.GetInstance();
+
+            singletonSubject.SomeBusinessLogic("A", txt);
+            singletonSubject.SomeBusinessLogic("B", txtBox);
+            singletonSubject.SomeBusinessLogic("C", grid);
         }
     }
 }

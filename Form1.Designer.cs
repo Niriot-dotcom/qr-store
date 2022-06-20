@@ -29,25 +29,27 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbLogs = new System.Windows.Forms.TextBox();
             this.checkBoxGrid = new System.Windows.Forms.CheckBox();
             this.checkBoxTextbox = new System.Windows.Forms.CheckBox();
             this.checkBoxTxt = new System.Windows.Forms.CheckBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.gridLogs = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.colDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEventDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLogs)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.tbLogs);
             this.panel1.Controls.Add(this.checkBoxGrid);
             this.panel1.Controls.Add(this.checkBoxTextbox);
             this.panel1.Controls.Add(this.checkBoxTxt);
-            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Controls.Add(this.gridLogs);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(1243, 12);
             this.panel1.Name = "panel1";
@@ -55,13 +57,13 @@
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // textBox1
+            // tbLogs
             // 
-            this.textBox1.Location = new System.Drawing.Point(0, 276);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(753, 486);
-            this.textBox1.TabIndex = 5;
+            this.tbLogs.Location = new System.Drawing.Point(0, 276);
+            this.tbLogs.Multiline = true;
+            this.tbLogs.Name = "tbLogs";
+            this.tbLogs.Size = new System.Drawing.Size(753, 486);
+            this.tbLogs.TabIndex = 5;
             // 
             // checkBoxGrid
             // 
@@ -99,30 +101,35 @@
             this.checkBoxTxt.UseVisualStyleBackColor = true;
             this.checkBoxTxt.CheckedChanged += new System.EventHandler(this.checkBoxTxt_CheckedChanged);
             // 
-            // dataGridView1
+            // gridLogs
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 806);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 82;
-            this.dataGridView1.RowTemplate.Height = 41;
-            this.dataGridView1.Size = new System.Drawing.Size(753, 328);
-            this.dataGridView1.TabIndex = 1;
+            this.gridLogs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridLogs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colDateTime,
+            this.colEventDescription});
+            this.gridLogs.Location = new System.Drawing.Point(0, 806);
+            this.gridLogs.Name = "gridLogs";
+            this.gridLogs.RowHeadersWidth = 82;
+            this.gridLogs.RowTemplate.Height = 41;
+            this.gridLogs.Size = new System.Drawing.Size(753, 328);
+            this.gridLogs.TabIndex = 1;
+            this.gridLogs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridLogs_CellContentClick);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Ebrima", 19.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("DejaVu Sans", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(312, 40);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(165, 71);
+            this.label1.Size = new System.Drawing.Size(176, 63);
             this.label1.TabIndex = 0;
             this.label1.Text = "LOGS";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("DejaVu Sans", 19.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button1.Font = new System.Drawing.Font("DejaVu Sans", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.button1.Location = new System.Drawing.Point(325, 168);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(482, 260);
@@ -133,13 +140,29 @@
             // 
             // button2
             // 
-            this.button2.Font = new System.Drawing.Font("DejaVu Sans", 19.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button2.Font = new System.Drawing.Font("DejaVu Sans", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.button2.Location = new System.Drawing.Point(325, 536);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(482, 260);
             this.button2.TabIndex = 2;
             this.button2.Text = "🚚 generate delivery route";
             this.button2.UseVisualStyleBackColor = true;
+            // 
+            // colDateTime
+            // 
+            this.colDateTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.colDateTime.FillWeight = 187.1795F;
+            this.colDateTime.HeaderText = "Date time";
+            this.colDateTime.MinimumWidth = 180;
+            this.colDateTime.Name = "colDateTime";
+            this.colDateTime.Width = 180;
+            // 
+            // colEventDescription
+            // 
+            this.colEventDescription.FillWeight = 12.82051F;
+            this.colEventDescription.HeaderText = "Event description";
+            this.colEventDescription.MinimumWidth = 200;
+            this.colEventDescription.Name = "colEventDescription";
             // 
             // Form1
             // 
@@ -155,7 +178,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLogs)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -164,12 +187,14 @@
 
         private Panel panel1;
         private Label label1;
-        private DataGridView dataGridView1;
-        private TextBox textBox1;
+        private DataGridView gridLogs;
+        private TextBox tbLogs;
         private CheckBox checkBoxGrid;
         private CheckBox checkBoxTextbox;
         private CheckBox checkBoxTxt;
         private Button button1;
         private Button button2;
+        private DataGridViewTextBoxColumn colDateTime;
+        private DataGridViewTextBoxColumn colEventDescription;
     }
 }

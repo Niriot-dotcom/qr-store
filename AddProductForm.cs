@@ -35,6 +35,7 @@ namespace _3P_PatyLopez
                 Console.WriteLine("name: " + p.name);
                 p.quantity = quantity;
                 list.Add(p);
+                // TODO add event
             } catch { }
         }
 
