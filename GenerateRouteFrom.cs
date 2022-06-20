@@ -12,9 +12,13 @@ namespace _3P_PatyLopez
 {
     public partial class GenerateRouteFrom : Form
     {
+        DistributionClass distro = new DistributionClass();
+        StoreClass[] storesInfo;
+
         public GenerateRouteFrom()
         {
             InitializeComponent();
+            numericUpDown1.Value = 1;
         }
 
         private void GenerateRouteFrom_Load(object sender, EventArgs e)
@@ -24,6 +28,8 @@ namespace _3P_PatyLopez
             lbOk.Hide();
             panelOk.Hide();
             btnCalculate.Enabled = false;
+
+            storesInfo = distro.GetStoresInfoFromQrCodes();
         }
 
         private void lbError_Click(object sender, EventArgs e)
@@ -33,7 +39,20 @@ namespace _3P_PatyLopez
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-
+            TrucksAndLeftovers ans = distro.CalculateTrucks(storesInfo);
+            if (numericUpDown1.Value >= ans.trucks)
+            {
+                lbError.Hide();
+                panelError.Hide();
+                panelOk.Show();
+                lbOk.Show();
+            } else
+            {
+                lbOk.Hide();
+                panelOk.Hide();
+                panelError.Show();
+                lbError.Show();
+            }
         }
     }
 }

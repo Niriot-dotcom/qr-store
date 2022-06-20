@@ -32,8 +32,7 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.lbTrucks = new System.Windows.Forms.Label();
             this.btnCalculate = new System.Windows.Forms.Button();
-            this.btnOk = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.lbError = new System.Windows.Forms.Label();
             this.panelError = new System.Windows.Forms.Panel();
             this.panelOk = new System.Windows.Forms.Panel();
@@ -99,26 +98,15 @@
             this.btnCalculate.Text = "calculate route";
             this.btnCalculate.UseVisualStyleBackColor = false;
             // 
-            // btnOk
+            // btnClose
             // 
-            this.btnOk.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnOk.Location = new System.Drawing.Point(688, 510);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(100, 38);
-            this.btnOk.TabIndex = 4;
-            this.btnOk.Text = "ok";
-            this.btnOk.UseVisualStyleBackColor = false;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCancel.Location = new System.Drawing.Point(582, 510);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(100, 38);
-            this.btnCancel.TabIndex = 5;
-            this.btnCancel.Text = "cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnClose.Location = new System.Drawing.Point(654, 500);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(134, 48);
+            this.btnClose.TabIndex = 5;
+            this.btnClose.Text = "close";
+            this.btnClose.UseVisualStyleBackColor = true;
             // 
             // lbError
             // 
@@ -166,8 +154,7 @@
             this.ClientSize = new System.Drawing.Size(800, 560);
             this.Controls.Add(this.panelOk);
             this.Controls.Add(this.panelError);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnOk);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnCalculate);
             this.Controls.Add(this.lbTrucks);
             this.Controls.Add(this.numericUpDown1);
@@ -197,5 +184,6 @@
         private Panel panelError;
         private Panel panelOk;
         private Label lbOk;
+        private Button btnClose;
     }
 }
