@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace _3P_PatyLopez
 {
-    public partial class GenerateRouteFrom : Form
+    public partial class GenerateRouteForm : Form
     {
-        DistributionClass distro = new DistributionClass();
+        FacadeActionsClass facade = FacadeActionsClass.GetInstance();
         StoreClass[] storesInfo;
 
         Label[] LbStoreNames;
@@ -20,7 +20,7 @@ namespace _3P_PatyLopez
         Label[] LbArrows;
         PictureBox[] PbStoreIcons;
 
-        public GenerateRouteFrom()
+        public GenerateRouteForm()
         {
             InitializeComponent();
         }
@@ -70,7 +70,19 @@ namespace _3P_PatyLopez
         {
             HideComponents();
             btnCalculate.Enabled = false;
-            storesInfo = distro.GetStoresInfoFromQrCodes();
+            storesInfo = facade.GetStoresInfoFromQrCodes();
+            foreach (var s in storesInfo)
+            {
+                Console.WriteLine("s.id: " + s.storeId);
+                Console.WriteLine("s.name: " + s.storeName);
+                Console.WriteLine("s.prods.count: " + s.products.Length);
+                //foreach (var p in s.products)
+                //{
+                //    Console.WriteLine();
+                //    Console.WriteLine(s.storeName);
+                //}
+                Console.WriteLine();
+            }
 
             LbStoreNames = new Label[5] { lbStore1, lbStore2, lbStore3, lbStore4, lbStore5 };
             LbStoreProfits = new Label[5] { lbProfit1, lbProfit2, lbProfit3, lbProfit4, lbProfit5 };
@@ -85,8 +97,8 @@ namespace _3P_PatyLopez
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            TrucksAndLeftovers ans = distro.CalculateTrucks(storesInfo);
-            if (numericUpDown1.Value >= ans.trucks)
+            int[] ans = facade.CalculateTrucks(storesInfo);
+            if (numericUpDown1.Value >= ans[0])
             {
                 lbError.Hide();
                 panelError.Hide();
@@ -122,7 +134,10 @@ namespace _3P_PatyLopez
             int i = 0;
             foreach (var s in storesInfo.OrderByDescending(s => s.profit))
             {
-                Console.WriteLine("profit store {0}: {1}", i, s.profit);
+                if (i < storesInfo.Length - 1)
+                {
+                    LbArrows[i].Show();
+                }
                 LbStoreNames[i].Text = s.storeName;
                 LbStoreNames[i].Show();
 
@@ -132,7 +147,6 @@ namespace _3P_PatyLopez
                 PbStoreIcons[i].Show();
                 i++;
             }
-            //storesInfo.OrderBy(s => s.profit);
         }
 
         private void label2_Click(object sender, EventArgs e)

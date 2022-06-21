@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,7 @@ namespace _3P_PatyLopez
 {
     public partial class TakeOrderForm : Form
     {
+        FacadeActionsClass facade = FacadeActionsClass.GetInstance();
         public TakeOrderForm()
         {
             InitializeComponent();
@@ -31,15 +33,24 @@ namespace _3P_PatyLopez
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // reading QR from camera
-            storePanel.Hide();
-            cameraImgBox.Show();
+            // without live camera
+            Image img;
+            using (var bmpTemp = new Bitmap("~/images/qrStore2.jpeg"))
+            {
+                img = new Bitmap(bmpTemp);
+            }
+            storeInfo = facade.GetStoreInfoFromQrCode(img);
+            showStoreInfo(storeInfo);
 
-            videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[cameraSelect.SelectedIndex].MonikerString);
-            videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
-            videoCaptureDevice.Start();
-            while (cameraImgBox.Image == null) { }
-            timer1.Start();
+            // reading QR from camera
+            //storePanel.Hide();
+            //cameraImgBox.Show();
+
+            //videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[cameraSelect.SelectedIndex].MonikerString);
+            //videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
+            //videoCaptureDevice.Start();
+            //while (cameraImgBox.Image == null) { }
+            //timer1.Start();
         }
 
         private void VideoCaptureDevice_NewFrame(object sender, NewFrameEventArgs eventArgs)
@@ -75,29 +86,29 @@ namespace _3P_PatyLopez
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            var bitMap = (Bitmap)cameraImgBox.Image;
-            var reader = new BarcodeReader();
-            var result = reader.Decode(bitMap);
-
-            if (result != null)
+            //Image img;
+            //using (var bmpTemp = new Bitmap("~/images/qrStore2.jpeg"))
+            //{
+            //    img = new Bitmap(bmpTemp);
+            //}
+            //storeInfo = facade.GetStoreInfoFromQrCode(img);
+            //showStoreInfo(storeInfo);
+            storeInfo = facade.GetStoreInfoFromQrCode(cameraImgBox.Image);
+            timer1.Stop();
+            if (videoCaptureDevice.IsRunning == true)
             {
-                storeInfo = JsonSerializer.Deserialize<StoreClass>(result.ToString());
-                timer1.Stop();
-                if (videoCaptureDevice.IsRunning == true)
+                videoCaptureDevice.SignalToStop();
+                videoCaptureDevice.WaitForStop();
+                cameraImgBox.Image = null;
+                cameraImgBox.Hide();
+                if (storeInfo != null)
                 {
-                    videoCaptureDevice.SignalToStop();
-                    videoCaptureDevice.WaitForStop();
-                    cameraImgBox.Image = null;
-                    cameraImgBox.Hide();
-                    if (storeInfo != null)
-                    {
-                        showStoreInfo();
-                    }
+                    showStoreInfo(storeInfo);
                 }
             }
         }
 
-        private void showStoreInfo()
+        private void showStoreInfo(StoreClass storeInfo)
         {
             productsGrid.Rows.Clear();
             productsGrid.Refresh();
@@ -122,10 +133,10 @@ namespace _3P_PatyLopez
         {
             productsGrid.Rows.Clear();
             productsGrid.Refresh();
-            AddProductForm productForm = new AddProductForm();
-            productForm.ShowDialog();
+            AddProductForm apf = facade.ShowAddProductDialog();
+            storeInfo.products = apf.list.ToArray();
 
-            foreach (Product p in productForm.list)
+            foreach (Product p in apf.list)
             {
                 productsGrid.Rows.Add(p.id, p.name, p.unitPrice, p.quantity);
             }
@@ -144,25 +155,10 @@ namespace _3P_PatyLopez
             labelQrGenerated.Hide();
             t.Start();
 
-            GenerateQrCode(productForm.list);
-        }
-
-        private void GenerateQrCode(List<Product> products)
-        {
-            var store = new StoreClass
-            {
-                storeId = storeInfo.storeId,
-                storeName = storeInfo.storeName,
-                products = products.ToArray(),
-            };
-
-            string storeJson = JsonSerializer.Serialize(store);
-            if (storeJson == "")
-            {
-                return;
-            }
-            string urlImage = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + storeJson;
-            imgQr.Load(urlImage);
+            // generating new QR code
+            string urlImg = facade.GenerateQrUrlFromStoreInfo(storeInfo);
+            imgQr.Load(urlImg);
+            facade.SaveQrCodeAsImage(urlImg, "~/images/qrStore" + storeInfo.storeId + ".jpeg");
             // TODO add event
         }
 
@@ -177,6 +173,11 @@ namespace _3P_PatyLopez
         }
 
         private void storePanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void imgQr_Click(object sender, EventArgs e)
         {
 
         }

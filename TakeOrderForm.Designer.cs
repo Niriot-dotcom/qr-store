@@ -53,9 +53,10 @@
             // 
             // takeOrderBtn
             // 
-            this.takeOrderBtn.Location = new System.Drawing.Point(626, 26);
+            this.takeOrderBtn.Location = new System.Drawing.Point(337, 12);
+            this.takeOrderBtn.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.takeOrderBtn.Name = "takeOrderBtn";
-            this.takeOrderBtn.Size = new System.Drawing.Size(240, 82);
+            this.takeOrderBtn.Size = new System.Drawing.Size(129, 38);
             this.takeOrderBtn.TabIndex = 0;
             this.takeOrderBtn.Text = "read QR code";
             this.takeOrderBtn.UseVisualStyleBackColor = true;
@@ -64,9 +65,10 @@
             // cameraImgBox
             // 
             this.cameraImgBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.cameraImgBox.Location = new System.Drawing.Point(57, 136);
+            this.cameraImgBox.Location = new System.Drawing.Point(31, 64);
+            this.cameraImgBox.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.cameraImgBox.Name = "cameraImgBox";
-            this.cameraImgBox.Size = new System.Drawing.Size(809, 634);
+            this.cameraImgBox.Size = new System.Drawing.Size(437, 299);
             this.cameraImgBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.cameraImgBox.TabIndex = 1;
             this.cameraImgBox.TabStop = false;
@@ -75,9 +77,10 @@
             // camLabel
             // 
             this.camLabel.AutoSize = true;
-            this.camLabel.Location = new System.Drawing.Point(57, 51);
+            this.camLabel.Location = new System.Drawing.Point(31, 24);
+            this.camLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.camLabel.Name = "camLabel";
-            this.camLabel.Size = new System.Drawing.Size(167, 32);
+            this.camLabel.Size = new System.Drawing.Size(83, 15);
             this.camLabel.TabIndex = 2;
             this.camLabel.Text = "Select camera:";
             // 
@@ -85,9 +88,10 @@
             // 
             this.cameraSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cameraSelect.FormattingEnabled = true;
-            this.cameraSelect.Location = new System.Drawing.Point(230, 48);
+            this.cameraSelect.Location = new System.Drawing.Point(124, 22);
+            this.cameraSelect.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.cameraSelect.Name = "cameraSelect";
-            this.cameraSelect.Size = new System.Drawing.Size(390, 40);
+            this.cameraSelect.Size = new System.Drawing.Size(212, 23);
             this.cameraSelect.TabIndex = 3;
             // 
             // timer1
@@ -103,36 +107,41 @@
             this.storePanel.Controls.Add(this.productsGrid);
             this.storePanel.Controls.Add(this.storeIdLabel);
             this.storePanel.Controls.Add(this.storeNameLabel);
-            this.storePanel.Location = new System.Drawing.Point(57, 136);
+            this.storePanel.Location = new System.Drawing.Point(31, 64);
+            this.storePanel.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.storePanel.Name = "storePanel";
-            this.storePanel.Size = new System.Drawing.Size(1233, 634);
+            this.storePanel.Size = new System.Drawing.Size(664, 297);
             this.storePanel.TabIndex = 4;
             this.storePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.storePanel_Paint);
             // 
             // labelQrGenerated
             // 
             this.labelQrGenerated.AutoSize = true;
-            this.labelQrGenerated.Location = new System.Drawing.Point(902, 101);
+            this.labelQrGenerated.Location = new System.Drawing.Point(486, 47);
+            this.labelQrGenerated.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelQrGenerated.Name = "labelQrGenerated";
-            this.labelQrGenerated.Size = new System.Drawing.Size(231, 64);
+            this.labelQrGenerated.Size = new System.Drawing.Size(113, 30);
             this.labelQrGenerated.TabIndex = 7;
             this.labelQrGenerated.Text = "the new qr code has\r\nbeen generated!";
             this.labelQrGenerated.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // imgQr
             // 
-            this.imgQr.Location = new System.Drawing.Point(844, 178);
+            this.imgQr.Location = new System.Drawing.Point(454, 83);
+            this.imgQr.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.imgQr.Name = "imgQr";
-            this.imgQr.Size = new System.Drawing.Size(350, 350);
+            this.imgQr.Size = new System.Drawing.Size(188, 164);
             this.imgQr.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imgQr.TabIndex = 6;
             this.imgQr.TabStop = false;
+            this.imgQr.Click += new System.EventHandler(this.imgQr_Click);
             // 
             // btnCreateOrder
             // 
-            this.btnCreateOrder.Location = new System.Drawing.Point(535, 564);
+            this.btnCreateOrder.Location = new System.Drawing.Point(288, 264);
+            this.btnCreateOrder.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.btnCreateOrder.Name = "btnCreateOrder";
-            this.btnCreateOrder.Size = new System.Drawing.Size(274, 70);
+            this.btnCreateOrder.Size = new System.Drawing.Size(148, 33);
             this.btnCreateOrder.TabIndex = 5;
             this.btnCreateOrder.Text = "create new order";
             this.btnCreateOrder.UseVisualStyleBackColor = true;
@@ -147,11 +156,12 @@
             this.nameCol,
             this.unitPriceCol,
             this.quantityCol});
-            this.productsGrid.Location = new System.Drawing.Point(0, 178);
+            this.productsGrid.Location = new System.Drawing.Point(0, 83);
+            this.productsGrid.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.productsGrid.Name = "productsGrid";
             this.productsGrid.RowHeadersWidth = 82;
             this.productsGrid.RowTemplate.Height = 41;
-            this.productsGrid.Size = new System.Drawing.Size(809, 350);
+            this.productsGrid.Size = new System.Drawing.Size(436, 164);
             this.productsGrid.TabIndex = 2;
             this.productsGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -182,33 +192,36 @@
             // storeIdLabel
             // 
             this.storeIdLabel.AutoSize = true;
-            this.storeIdLabel.Font = new System.Drawing.Font("DejaVu Sans", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.storeIdLabel.Location = new System.Drawing.Point(7, 120);
+            this.storeIdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.storeIdLabel.Location = new System.Drawing.Point(4, 56);
+            this.storeIdLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.storeIdLabel.Name = "storeIdLabel";
-            this.storeIdLabel.Size = new System.Drawing.Size(0, 35);
+            this.storeIdLabel.Size = new System.Drawing.Size(0, 18);
             this.storeIdLabel.TabIndex = 1;
             this.storeIdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // storeNameLabel
             // 
             this.storeNameLabel.AutoSize = true;
-            this.storeNameLabel.Font = new System.Drawing.Font("DejaVu Sans", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.storeNameLabel.Location = new System.Drawing.Point(0, 40);
+            this.storeNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.storeNameLabel.Location = new System.Drawing.Point(0, 19);
+            this.storeNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.storeNameLabel.Name = "storeNameLabel";
-            this.storeNameLabel.Size = new System.Drawing.Size(0, 63);
+            this.storeNameLabel.Size = new System.Drawing.Size(0, 31);
             this.storeNameLabel.TabIndex = 0;
             this.storeNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TakeOrderForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1342, 828);
+            this.ClientSize = new System.Drawing.Size(723, 388);
             this.Controls.Add(this.storePanel);
             this.Controls.Add(this.cameraSelect);
             this.Controls.Add(this.camLabel);
             this.Controls.Add(this.cameraImgBox);
             this.Controls.Add(this.takeOrderBtn);
+            this.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.Name = "TakeOrderForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TakeOrderForm";

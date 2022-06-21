@@ -17,7 +17,7 @@ namespace _3P_PatyLopez
             InitializeComponent();
         }
 
-        public List<Product> list;
+        public List<Product> list { get; set; }
         private Product[] defaultList;
 
         private void btnAddProduct_Click(object sender, EventArgs e)
@@ -32,7 +32,6 @@ namespace _3P_PatyLopez
                 int quantity = (int)cbQuantity.Value;
 
                 Product p = Array.Find(defaultList, p => p.name == name);
-                Console.WriteLine("name: " + p.name);
                 p.quantity = quantity;
                 list.Add(p);
                 // TODO add event
@@ -49,7 +48,7 @@ namespace _3P_PatyLopez
 
         private void AddProductForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Console.WriteLine("product list:" + list.Count + "\n");
+            //Console.WriteLine("product list:" + list.Count + "\n");
             //foreach (Product p in list)
             //{
             //    Console.WriteLine("p: " + p);

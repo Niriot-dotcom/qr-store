@@ -3,10 +3,12 @@ namespace _3P_PatyLopez
     public partial class Form1 : Form
     {
         private Subject singletonSubject;
+        private FacadeActionsClass facadeActionsClass;
         public Form1()
         {
             InitializeComponent();
             singletonSubject = Subject.GetInstance();
+            facadeActionsClass = new FacadeActionsClass();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -50,8 +52,7 @@ namespace _3P_PatyLopez
         {
             // TODO add event
             singletonSubject.NotifyToAll(checkBoxTxt.Checked, checkBoxTextbox.Checked, checkBoxGrid.Checked);
-            TakeOrderForm takeOrderForm = new TakeOrderForm();
-            takeOrderForm.ShowDialog();
+            facadeActionsClass.ShowTakeOrderDialog();
         }
 
         private void gridLogs_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -61,8 +62,7 @@ namespace _3P_PatyLopez
 
         private void button2_Click(object sender, EventArgs e)
         {
-            GenerateRouteFrom generateRouteFrom = new GenerateRouteFrom();
-            generateRouteFrom.ShowDialog();
+            facadeActionsClass.ShowGenerateRouteDialog();
         }
     }
 }
